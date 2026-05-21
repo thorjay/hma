@@ -1,5 +1,7 @@
 import os
+
 from dotenv import load_dotenv
+
 try:
     from openai import OpenAI
 except Exception:
@@ -19,7 +21,8 @@ try:
     if OpenAI is None:
         # try dynamic import
         import importlib
-        openai_mod = importlib.import_module('openai')
+
+        openai_mod = importlib.import_module("openai")
         client = openai_mod.OpenAI()
     else:
         client = OpenAI()
@@ -28,7 +31,7 @@ try:
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role": "user", "content": "Hello, Hermes!"}],
-        max_tokens=10
+        max_tokens=10,
     )
     print("✅ 网络与鉴权检查：大模型响应成功！")
     # Try to extract content safely
